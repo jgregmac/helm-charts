@@ -17,17 +17,17 @@ SLA of official GA features (see [supported configurations][] for more details).
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [Requirements](#requirements)
-- [Installing](#installing)
-  - [Install a released version using the Helm repository](#install-a-released-version-using-the-helm-repository)
-  - [Install a development version using the main branch](#install-a-development-version-using-the-main-branch)
-- [Upgrading](#upgrading)
-- [Usage notes](#usage-notes)
-- [Configuration](#configuration)
-- [FAQ](#faq)
-  - [How to install OSS version of Logstash?](#how-to-install-oss-version-of-logstash)
-  - [How to install plugins?](#how-to-install-plugins)
-- [Contributing](#contributing)
+  - [Requirements](#requirements)
+  - [Installing](#installing)
+    - [Install a released version using the Helm repository](#install-a-released-version-using-the-helm-repository)
+    - [Install a development version using the main branch](#install-a-development-version-using-the-main-branch)
+  - [Upgrading](#upgrading)
+  - [Usage notes](#usage-notes)
+  - [Configuration](#configuration)
+  - [FAQ](#faq)
+    - [How to install OSS version of Logstash?](#how-to-install-oss-version-of-logstash)
+    - [How to install plugins?](#how-to-install-plugins)
+  - [Contributing](#contributing)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 <!-- Use this to update TOC: -->
@@ -141,6 +141,7 @@ useful for the [http input plugin][], for instance.
 | `service`                 | Configurable [service][] to expose the Logstash service.                                                                                                                                                                             | see [values.yaml][]                   |
 | `terminationGracePeriod`  | The [terminationGracePeriod][] in seconds used when trying to stop the pod                                                                                                                                                           | `120`                                 |
 | `tolerations`             | Configurable [tolerations][]                                                                                                                                                                                                         | `[]`                                  |
+| `topologySpreadConstraints` | Contains values that the Kubernetes scheduler will weigh when determining where to start multiple Logstash pods in the cluster.  Useful when Logstash workloads need to be distributed evenly across cluster nodes. | see [values.yaml][]                   |
 | `updateStrategy`          | The [updateStrategy][] for the StatefulSet. By default Kubernetes will wait for the cluster to be green after upgrading each pod. Setting this to `OnDelete` will allow you to manually delete each pod during upgrades              | `RollingUpdate`                       |
 | `volumeClaimTemplate`     | Configuration for the [volumeClaimTemplate for StatefulSets][]. You will want to adjust the storage (default `30Gi` ) and the `storageClassName` if you are using a different storage class                                          | see [values.yaml][]                   |
 

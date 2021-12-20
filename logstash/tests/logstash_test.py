@@ -639,6 +639,35 @@ podAffinity:
     )
 
 
+def test_adding_topology_spread_constraints():
+    config = """
+topologySpreadConstraints:
+  - maxSkew: 1
+    topologyKey: "kubernetes.io/hostname"
+    whenUnsatisfiable: "ScheduleAnyway"
+"""
+
+    r = helm_template(config)
+    assert (
+        r["statefulset"][name]["spec"]["template"]["spec"]["topologySpreadConstraints"][
+            0
+        ]["maxSkew"]
+        == 1
+    )
+    assert (
+        r["statefulset"][name]["spec"]["template"]["spec"]["topologySpreadConstraints"][
+            0
+        ]["topologyKey"]
+        == "kubernetes.io/hostname"
+    )
+    assert (
+        r["statefulset"][name]["spec"]["template"]["spec"]["topologySpreadConstraints"][
+            0
+        ]["whenUnsatisfiable"]
+        == "ScheduleAnyway"
+    )
+
+
 def test_adding_in_logstash_config():
     config = """
 logstashConfig:
