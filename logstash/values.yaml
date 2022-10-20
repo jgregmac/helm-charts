@@ -179,6 +179,14 @@ nodeAffinity: {}
 # https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
 podAffinity: {}
 
+# Settings to inform the scheduler how to spread Logstash pods in the cluster. Requires Kubernetes v1.18+.
+# https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/
+topologySpreadConstraints:
+  []
+  # - maxSkew: 1                            # Maximum number of pods to un on each node matching the topologyKey
+  #   topologyKey: "kubernetes.io/hostname" # Must match a label on the Kubernetes hosts in your cluster
+  #   whenUnsatisfiable: "ScheduleAnyway"   # Must be one of "DoNotSchedule" or "ScheduleAnyway"
+
 # The default is to deploy all pods serially. By setting this to parallel all pods are started at
 # the same time when bootstrapping the cluster
 podManagementPolicy: "Parallel"
